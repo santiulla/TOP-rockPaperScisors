@@ -3,9 +3,10 @@
 let humanCounter = 0;
 let computerCounter = 0;
 
-while (humanCounter < 5 && computerCounter < 5) {
-  let humanSelection = window.prompt("To five rounds:\nRock, Paper o Scisors?");
-  console.clear();
+let humanSelection;
+
+function startGame(e) {
+  humanSelection = this.value;
   console.log("You chose " + humanSelection);
 
   // computer selection
@@ -13,12 +14,10 @@ while (humanCounter < 5 && computerCounter < 5) {
 
   randomChoice = Math.floor(Math.random() * 3);
 
-    computerSelection =
-      randomChoice === 0 ? "rock" : randomChoice === 1 ? "paper" : "scisors";
-    console.log("Computer chose " + computerSelection);
-  }
+  computerSelection =
+    randomChoice === 0 ? "rock" : randomChoice === 1 ? "paper" : "scisors";
+  console.log("Computer chose " + computerSelection);
 
-  getComputerSelection();
   console.log("");
 
   if (
@@ -45,13 +44,6 @@ while (humanCounter < 5 && computerCounter < 5) {
   console.log("");
   console.log("You " + humanCounter);
   console.log("CPU " + computerCounter);
-}
-
-  if (humanCounter === 5) {
-    console.log("You Win!");
-  } else {
-    console.log("You Lose!");
-  }
 }
 
 // Link buttons
