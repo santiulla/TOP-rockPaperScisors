@@ -1,13 +1,16 @@
 // counters
 
 let humanCounter = 0;
-let computerCounter = 0;
-
-let humanSelection;
+let cpuCounter = 0;
+let result = "";
 
 function startGame(e) {
-  humanSelection = this.value;
-  console.log("You chose " + humanSelection);
+  if (cpuCounter === 5 || humanCounter === 5) {
+    cpuCounter = 0;
+    humanCounter = 0;
+  }
+
+  let humanSelection = this.value;
 
   // computer selection
   let computerSelection = "";
@@ -16,9 +19,6 @@ function startGame(e) {
 
   computerSelection =
     randomChoice === 0 ? "rock" : randomChoice === 1 ? "paper" : "scisors";
-  console.log("Computer chose " + computerSelection);
-
-  console.log("");
 
   if (
     humanSelection !== "rock" &&
@@ -32,19 +32,38 @@ function startGame(e) {
       (humanSelection === "scisors" && computerSelection === "paper") ||
       (humanSelection === "paper" && computerSelection === "rock")
     ) {
-      console.log("You Win");
+      result = "You Win";
       humanCounter++;
     } else if (humanSelection === computerSelection) {
-      console.log("It's a tie");
+      result = "It's a tie";
     } else {
-      console.log("You Lose");
-      computerCounter++;
+      result = "You Lose";
+      cpuCounter++;
+    }
+
+    if (cpuCounter === 5 || humanCounter === 5) {
+      const endGame = document.getElementById("endGame");
+      endGame.innerText = result;
     }
   }
-  console.log("");
-  console.log("You " + humanCounter);
-  console.log("CPU " + computerCounter);
+
+  const showHumanChoise = document.getElementById("yourChoise");
+  showHumanChoise.innerText = "You chose " + humanSelection;
+
+  const showCpuChoise = document.getElementById("cpuChoise");
+  showCpuChoise.innerText = "Computer chose " + computerSelection;
+
+  const showWinner = document.getElementById("showWinner");
+  showWinner.innerText = result;
+
+  const showHumanCounter = document.getElementById("humanCounter");
+  showHumanCounter.innerText = humanCounter;
+
+  const showCpuCounter = document.getElementById("cpuCounter");
+  showCpuCounter.innerText = cpuCounter;
 }
+
+const container = document.querySelector("#container");
 
 // Link buttons
 const buttons = document.querySelectorAll("button");
