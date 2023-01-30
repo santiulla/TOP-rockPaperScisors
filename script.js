@@ -8,6 +8,8 @@ function startGame(e) {
   if (cpuCounter === 5 || humanCounter === 5) {
     cpuCounter = 0;
     humanCounter = 0;
+    let showWinner = document.getElementById("showWinner");
+    showWinner.innerText.replace(result, "");
   }
 
   let humanSelection = this.value;
@@ -21,30 +23,22 @@ function startGame(e) {
     randomChoice === 0 ? "rock" : randomChoice === 1 ? "paper" : "scisors";
 
   if (
-    humanSelection !== "rock" &&
-    humanSelection !== "paper" &&
-    humanSelection !== "scisors"
+    (humanSelection === "rock" && computerSelection === "scisors") ||
+    (humanSelection === "scisors" && computerSelection === "paper") ||
+    (humanSelection === "paper" && computerSelection === "rock")
   ) {
-    alert("that's not the game");
+    result = "You Win";
+    humanCounter++;
+  } else if (humanSelection === computerSelection) {
+    result = "It's a tie";
   } else {
-    if (
-      (humanSelection === "rock" && computerSelection === "scisors") ||
-      (humanSelection === "scisors" && computerSelection === "paper") ||
-      (humanSelection === "paper" && computerSelection === "rock")
-    ) {
-      result = "You Win";
-      humanCounter++;
-    } else if (humanSelection === computerSelection) {
-      result = "It's a tie";
-    } else {
-      result = "You Lose";
-      cpuCounter++;
-    }
+    result = "You Lose";
+    cpuCounter++;
+  }
 
-    if (cpuCounter === 5 || humanCounter === 5) {
-      const endGame = document.getElementById("endGame");
-      endGame.innerText = result;
-    }
+  if (cpuCounter === 5 || humanCounter === 5) {
+    const endGame = document.getElementById("endGame");
+    endGame.innerText = result;
   }
 
   const showHumanChoise = document.getElementById("yourChoise");
@@ -53,7 +47,7 @@ function startGame(e) {
   const showCpuChoise = document.getElementById("cpuChoise");
   showCpuChoise.innerText = "Computer chose " + computerSelection;
 
-  const showWinner = document.getElementById("showWinner");
+  let showWinner = document.getElementById("showWinner");
   showWinner.innerText = result;
 
   const showHumanCounter = document.getElementById("humanCounter");

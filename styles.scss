@@ -1,4 +1,49 @@
 body {
   font-family: "Press Start 2P", cursive;
-  transition: 1s ease-in-out 1s;
+}
+
+h1 {
+  padding: 2em 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button {
+  font-family: inherit;
+  padding: 1em 2em;
+}
+
+.buttons {
+  padding: 2em 0;
+}
+
+.winner {
+  font-size: 2em;
+  color: red;
+}
+.endGame {
+  font-size: 4em;
+  animation: rainbow 5s ease-in-out infinite;
+}
+
+@keyframes rainbow {
+  0% {
+    color: red;
+  }
+  25% {
+    color: yellow;
+  }
+  50% {
+    color: green;
+  }
+  75% {
+    color: blue;
+  }
+  100% {
+    color: red;
+  }
 }
